@@ -1,0 +1,45 @@
+This Example demonstrate  
+how to do facial authentication & recognition on chrome using PNacl & Opencv
+
+pre requirement
+
+install nacl_sdk ,naclports & pepper_canery
+
+
+
+setup Naclroot & naclports
+
+export PATH=$HOME/chromium.googlesource.com/external/naclports/bin:$HOME/nacl_sdk:$PATH
+
+export NACL_SDK_ROOT=$HOME/nacl_sdk/pepper_canary
+
+
+Setup debug setting for google-chrome-unstable
+
+export NACL_PLUGIN_DEBUG=1
+export NACL_SRPC_DEBUG=1
+export NACLVERBOSITY=1
+
+#export NACL_EXE_STDOUT=$HOME/logs/nacl_stdout.log
+#export NACL_EXE_STDERR=$HOME/logs/nacl_stderr.log
+#export NACLLOG=$HOME/logs/nacl.log
+
+add opencv libs into Makefile 
+
+
+LIBS = ppapi_gles2 ppapi_cpp ppapi pthread \
+	opencv_contrib opencv_stitching	opencv_nonfree opencv_superres opencv_ts opencv_videostab \
+	opencv_gpu opencv_photo	opencv_objdetect opencv_legacy opencv_video opencv_ml opencv_calib3d \
+	opencv_features2d opencv_highgui opencv_imgproc opencv_flann opencv_core png jpeg z m 
+
+
+start app 
+make serve
+
+start the browser
+
+google-chrome-unstable --user-data-dir=~/gcu
+
+http://localhost:5103/
+there it is 
+
